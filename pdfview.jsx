@@ -4,10 +4,10 @@ import KeyboardDoubleArrowRightRoundedIcon from "@mui/icons-material/KeyboardDou
 import { Button, LinearProgress } from "@mui/material";
 import ViewWeekRoundedIcon from "@mui/icons-material/ViewWeekRounded";
 import { motion } from "motion/react";
-import { useVirtualizer } from "@tanstack/react-virtual";
 //---------------------------------------------------------------------
 import { Routes, Route, useNavigate } from "react-router";
 import NoteFound from "@/pages/404";
+import { FixedSizeList as List } from "react-window";
 import * as pdfjsLib from "pdfjs-dist";
 import {
   useEffect,
@@ -329,11 +329,15 @@ const BrowserList = ({ state }) => {
 };
 
 const SidePdfViewEngine = () => {
+  const Row = ({ index, style }) => {
+    <div style={style}>Row {index}</div>;
+  };
   useEffect(() => {});
   return (
     <div className="w-full h-full  flex flex-col items-center ">
-      <div></div>
-      <div></div>
+      <List height={150} itemCount={1000} itemSize={24} width={300}>
+        {Row}
+      </List>
     </div>
   );
 };
